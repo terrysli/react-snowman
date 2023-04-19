@@ -9,6 +9,8 @@ import img4 from "./4.png";
 import img5 from "./5.png";
 import img6 from "./6.png";
 
+const GALLOWS_IMAGES = [img0, img1, img2, img3, img4, img5, img6];
+
 
 /** Snowman game: plays hangman-style game with a melting snowman.
  *
@@ -76,6 +78,7 @@ function Snowman({
   return (
       <div className="Snowman">
         <img src={(images)[nWrong]} alt={nWrong} />
+        <p className="num-wrong">Number wrong: {nWrong}</p>
         <p className="Snowman-word">{guessedWord()}</p>
         <p>{generateButtons()}</p>
       </div>
@@ -84,3 +87,4 @@ function Snowman({
 
 
 export default Snowman;
+export { GALLOWS_IMAGES };
