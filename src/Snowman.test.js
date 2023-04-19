@@ -8,10 +8,14 @@ test("renders without crashing", function () {
   render(<Snowman />);
 });
 
-test("player cannot keep guessing after maxWrong guesses", function () {
-  const { container } = render(<Snowman maxWrong="1" />);
+test("matches snapshot", function () {
+  const { container } = render(<Snowman />);
+  expect(container).toMatchSnapshot();
+});
+
+test("buttons are gone after maxWrong guesses", function () {
+  const { container } = render(<Snowman words={["apple"]} maxWrong="1" />);
+  const ltrButtons = container.querySelector('.ltr-buttons');
   fireEvent.click(container.querySelector('button[value="b"]'));
-  fireEvent.click(container.querySelector('button[value="c"]'));
-  expect(container.querySelector(".num-wrong"))
-    .toHaveTextContent("Number wrong: 1");
+  expect(ltrButtons).toBeEmptyDOMElement();
 });
